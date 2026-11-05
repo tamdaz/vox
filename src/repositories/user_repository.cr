@@ -1,0 +1,3 @@
+class Vox::UserRepository < AORM::EntityRepository(Vox::Entities::User)
+  # ...
+end

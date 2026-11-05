@@ -1,0 +1,4 @@
+dependencies:
+  athena-dependency_injection:
+    github: athena-framework/dependency-injection
+    commit: ef1ee475f1b9c4ddd8ccbfc6405d89a4ab274706

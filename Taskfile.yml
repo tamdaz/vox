@@ -1,0 +1,12 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
+version: '3'
+
+
+tasks:
+  migrate:
+    desc: Migrate the database
+    cmds:
+      - cat /dev/null > ./var/data.db
+      - bin/console orm:mig:mig
+    silent: true

@@ -1,0 +1,71 @@
+# NOTICE: This lockfile contains some overrides from shard.override.yml
+version: 2.0
+shards:
+  athena:
+    git: https://github.com/athena-framework/framework.git
+    version: 0.23.0
+
+  athena-clock:
+    git: https://github.com/athena-framework/clock.git
+    version: 0.3.0
+
+  athena-console:
+    git: https://github.com/athena-framework/console.git
+    version: 0.5.0
+
+  athena-contracts:
+    git: https://github.com/athena-framework/contracts.git
+    version: 0.1.1
+
+  athena-dependency_injection: # Overridden
+    git: https://github.com/athena-framework/dependency-injection.git
+    version: 0.4.6+git.commit.ef1ee475f1b9c4ddd8ccbfc6405d89a4ab274706
+
+  athena-dotenv:
+    git: https://github.com/athena-framework/dotenv.git
+    version: 0.2.1
+
+  athena-event_dispatcher:
+    git: https://github.com/athena-framework/event-dispatcher.git
+    version: 0.4.2
+
+  athena-http:
+    git: https://github.com/athena-framework/http.git
+    version: 0.1.1
+
+  athena-http_kernel:
+    git: https://github.com/athena-framework/http-kernel.git
+    version: 0.2.0
+
+  athena-mime:
+    git: https://github.com/athena-framework/mime.git
+    version: 0.2.2
+
+  athena-orm:
+    git: https://github.com/athena-framework/orm.git
+    version: 0.1.0
+
+  athena-password_hasher:
+    git: https://github.com/athena-framework/password-hasher.git
+    version: 0.1.0
+
+  athena-routing:
+    git: https://github.com/athena-framework/routing.git
+    version: 0.2.1
+
+  athena-security:
+    git: https://github.com/athena-framework/security.git
+    version: 0.1.0+git.commit.bb0ec8e904def4151e2c90ebc96f62ed4493dbde
+
+  athena-serializer:
+    git: https://github.com/athena-framework/serializer.git
+    version: 0.4.4
+
+  db:
+    git: https://github.com/crystal-lang/crystal-db.git
+    version: 0.15.0
+
+  sqlite3:
+    git: https://github.com/crystal-lang/crystal-sqlite3.git
+    version: 0.24.0
+
