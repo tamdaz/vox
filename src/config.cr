@@ -23,7 +23,7 @@ ATH.configure({
     firewalls: {
       api: {
         pattern:               /^\/api/,
-        custom_authenticators: ["api_token_authenticator"],
+        custom_authenticators: ["vox_api_token_authenticator"],
       },
     },
     access_control: [

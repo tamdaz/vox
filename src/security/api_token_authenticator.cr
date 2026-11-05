@@ -1,5 +1,5 @@
 @[ADI::Register]
-class APITokenAuthenticator < ASEC::Authenticator::AbstractAuthenticator
+class Vox::APITokenAuthenticator < ASEC::Authenticator::AbstractAuthenticator
   def initialize(@em : AORM::EntityManagerInterface); end
 
   def supports?(request : AHTTP::Request) : Bool?
@@ -8,10 +8,6 @@ class APITokenAuthenticator < ASEC::Authenticator::AbstractAuthenticator
 
   def authenticate(request : AHTTP::Request) : ASEC::Authenticator::Passport
     api_token = request.headers["x-api-token"]
-
-    user = @em.repository(Vox::Entities::User).find_one_by(api_token: api_token)
-
-    raise "User not found" if user.nil?
 
     ASEC::Authenticator::Passport::SelfValidating.new(
       ASEC::Authenticator::Passport::Badge::User.new(api_token) do |token|
@@ -25,6 +21,9 @@ class APITokenAuthenticator < ASEC::Authenticator::AbstractAuthenticator
   end
 
   def on_authentication_failure(request : AHTTP::Request, exception : ASEC::Exception::Authentication) : AHTTP::Response?
-    AHTTP::Response.new exception.message_key, :unauthorized
+    AHTTP::Response.new({
+      :code    => 401,
+      :message => exception.message_key,
+    }.to_json, :unauthorized)
   end
 end
