@@ -51,9 +51,15 @@ class Vox::ConversationController < ATH::Controller
   @[ARTA::Get("/{id}", name: "app_conversations_show")]
   def show(id : Int32) : Array(Vox::Entities::Message)
     conversation = @em.repository(Vox::Entities::Conversation).find(id)
+    current_user = @token_storage.token.try(&.user).as(Vox::Entities::User)
 
     unless conversation
       raise AHK::Exception::NotFound.new "Conversation not found"
+    end
+
+    # TODO: use a voter instead.
+    unless conversation.users.includes?(current_user)
+      raise AHK::Exception::Forbidden.new "Access denied"
     end
 
     conversation.messages.to_a
@@ -66,6 +72,11 @@ class Vox::ConversationController < ATH::Controller
 
     unless conversation
       raise AHK::Exception::NotFound.new "Conversation not found"
+    end
+
+    # TODO: use a voter instead.
+    unless conversation.users.includes?(current_user)
+      raise AHK::Exception::Forbidden.new "Access denied"
     end
 
     message = Vox::Entities::Message.new
