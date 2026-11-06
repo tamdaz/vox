@@ -2,8 +2,7 @@
 @[AORMA::Table(name: "users")]
 @[ASRA::ExclusionPolicy(:all)]
 @[ASRA::AccessorOrder(
-  :custom,
-  order: %w[id username]
+  :custom, order: %w[id username]
 )]
 class Vox::Entities::User < AORM::Entity
   include APH::PasswordAuthenticatedUserInterface

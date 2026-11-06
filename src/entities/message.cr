@@ -2,8 +2,7 @@
 @[AORMA::Table(name: "messages")]
 @[ASRA::ExclusionPolicy(:all)]
 @[ASRA::AccessorOrder(
-  :custom,
-  order: %w[id message sent_at user]
+  :custom, order: %w[id message sent_at user]
 )]
 class Vox::Entities::Message < AORM::Entity
   include ASR::Serializable

@@ -2,8 +2,7 @@
 @[AORMA::Table(name: "conversations")]
 @[ASRA::ExclusionPolicy(:all)]
 @[ASRA::AccessorOrder(
-  :custom,
-  order: %w[id number_of_users number_of_messages created_at updated_at]
+  :custom, order: %w[id number_of_users number_of_messages created_at updated_at]
 )]
 class Vox::Entities::Conversation < AORM::Entity
   include ASR::Serializable
