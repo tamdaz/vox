@@ -2,8 +2,23 @@ require "random/secure"
 
 @[ADI::Register]
 class Vox::AuthController < ATH::Controller
-  def initialize(@em : AORM::EntityManagerInterface); end
+  def initialize(
+    @em : AORM::EntityManagerInterface,
+    @token_storage : ASEC::Authentication::Token::Storage::Interface,
+  ); end
 
+  @[ARTA::Post("/auth/login", name: "app_auth_login")]
+  def login : ATH::View(Hash(Symbol, Int64 | String))
+    current_user = @token_storage.token.try(&.user).as(Vox::Entities::User)
+
+    self.view({
+      :id       => current_user.id,
+      :username => current_user.username,
+      :token    => current_user.api_token,
+    }, :created)
+  end
+
+  # Creates a user account.
   @[ARTA::Post("/auth/register", name: "app_auth_register")]
   def register(@[ATHA::MapRequestBody] user_dto : UserDTO) : ATH::View(Hash(Symbol, String | Int32))
     hasher = APH::UserPasswordHasher.new APH::Factory.new({
