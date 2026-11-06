@@ -25,9 +25,14 @@ ATH.configure({
         pattern:               /^\/api/,
         custom_authenticators: ["vox_api_token_authenticator"],
       },
+      auth_login: {
+        pattern:               /\/auth\/login/,
+        custom_authenticators: ["vox_password_authenticator"],
+      },
     },
     access_control: [
       {path: /^\/api/, role: "IS_AUTHENTICATED"},
+      {path: /^\/auth/, role: "PUBLIC_ACCESS"},
     ],
   },
 })
