@@ -1,5 +1,7 @@
 @[ADI::Register]
 class Vox::APITokenAuthenticator < ASEC::Authenticator::AbstractAuthenticator
+  alias TokenInterface = ASEC::Authentication::Token::Interface
+
   def initialize(@em : AORM::EntityManagerInterface); end
 
   def supports?(request : AHTTP::Request) : Bool?
@@ -16,7 +18,7 @@ class Vox::APITokenAuthenticator < ASEC::Authenticator::AbstractAuthenticator
     )
   end
 
-  def on_authentication_success(request : AHTTP::Request, token : ASEC::Authentication::Token::Interface, firewall_name : String) : AHTTP::Response?
+  def on_authentication_success(request : AHTTP::Request, token : TokenInterface, firewall_name : String) : AHTTP::Response?
     nil
   end
 
