@@ -1,0 +1,8 @@
+Version: "1.7.0"
+
+Style/HeredocIndent:
+  Excluded:
+  - src/migrations/version20261104115900.cr
+
+Style/RedundantSelf:
+  Enabled: false
